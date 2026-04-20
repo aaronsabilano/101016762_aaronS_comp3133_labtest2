@@ -1,12 +1,20 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CharacterList } from './components/character-list/character-list';
+import { CharacterSearch } from './components/character-search/character-search';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [CharacterList, CharacterSearch],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('101016762-labtest2');
+  title = '101016762-labtest2';
+
+  selectedHouse = signal('');
+
+  updateHouse(house: string): void {
+    this.selectedHouse.set(house);
+  }
 }

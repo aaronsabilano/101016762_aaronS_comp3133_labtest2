@@ -1,0 +1,8 @@
+<h2>Harry Potter Characters Filter</h2>
+
+<select [(ngModel)]="selectedHouse" (change)="onHouseChange()">
+  <option value="">All Houses</option>
+  @for (house of houses; track house) {
+    <option [value]="house">{{ house }}</option>
+  }
+</select>

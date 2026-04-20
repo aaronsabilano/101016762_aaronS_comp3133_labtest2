@@ -1,0 +1,43 @@
+<h2>Harry Potter Characters</h2>
+
+@if (characters().length === 0) {
+  <p>Loading characters...</p>
+} @else {
+  @for (character of characters(); track character.name) {
+    <div class="card" (click)="selectCharacter(character)">
+      @if (character.image) {
+        <img [src]="character.image" [alt]="character.name" width="100" />
+      } @else {
+        <p><em>No image available</em></p>
+      }
+
+      <h3>{{ character.name }}</h3>
+
+      @switch (character.house) {
+        @case ('Gryffindor') {
+          <p><strong>House:</strong> Gryffindor</p>
+        }
+        @case ('Slytherin') {
+          <p><strong>House:</strong> Slytherin</p>
+        }
+        @case ('Ravenclaw') {
+          <p><strong>House:</strong> Ravenclaw</p>
+        }
+        @case ('Hufflepuff') {
+          <p><strong>House:</strong> Hufflepuff</p>
+        }
+        @default {
+          <p><strong>House:</strong> Unknown</p>
+        }
+      }
+
+      <p><strong>Actor:</strong> {{ character.actor || 'Unknown' }}</p>
+      <p><strong>Species:</strong> {{ character.species || 'Unknown' }}</p>
+    </div>
+  }
+}
+
+@if (selectedCharacter()) {
+  <p>Selected: {{ selectedCharacter()!.name }}</p>
+  <app-character-details [character]="selectedCharacter()!"></app-character-details>
+}
